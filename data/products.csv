@@ -1,0 +1,15 @@
+product_name,our_price,category,current_stock,restock_threshold,last_restock,product_brand
+Organic Coffee Beans ,14.99,beverages,45,25,2024-11-15,Be
+Premium Green Tea,8.99,beverages,32,20,2024-11-10,Te
+Masala Chai Mix,9.99,beverages,18,15,2024-11-18,Spice W
+Yerba Mate Loose Leaf,12.99,beverages,5,10,2024-11-01,S
+Hot Chocolate Mix,7.99,beverages,50,30,2024-11-12,Sweet
+Earl Grey Tea,11.99,beverages,28,25,2024-11-14,Tea
+Espresso Beans,16.99,beverages,22,20,2024-11-16,Bean Bro
+Chamomile Tea,6.99,tea,12,15,2024-11-05,Tea Time Imp
+Matcha Green Tea Powder,19.99,beverages,8,0,2024-11-17,Te
+Decaf Coffee Beans,15.99,beverages,15,15,2024-11-13,Bean
+Mint Tea,7.49,beverages,0,12,2024-10-30,T
+Instant Coffee,11.99,coffee,25,20,2024-11-19,Coffee Cor
+Rooibos Tea,0.00,beverages,30,20,2024-11-08,Tea Time Imp
+"cold brew concentrate",13.99,beverages,19,15,2024-11-20,Bean

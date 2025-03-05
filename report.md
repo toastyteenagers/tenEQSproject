@@ -28,9 +28,21 @@ that is titled `category` with elements in that category being: `beverages, coff
 of what exactly constitues the differences between the categories, but I would prefer to see more specific descriptors, for example:
 `Roobios Tea` is listed as a `beverage` when it could easily exist in the `tea` category. 
 
+## Notes on product descriptions
+It could be useful to take a product description like `Masala Chai Mix (12oz)` to pivot into 2 fields, `Masala Chai Mix` and a
+quantity field like `12oz` so unit costs per product could be found. I chose not to do so here as it seems that, for example,
+the chai mix's size is an important quality to know, as a product might be the same in composition but differ in size. 
 
 
+## Choice of external data source
+Since this data seems to be describing sales trends, or at least stock quantities, of a coffee/tea shop, I chose a 
+kaggle dataset of transactions from a coffee shop. I hope introducing this external source could gain insight into 
+consumption rates of products in the dataset.
 
-
-
-
+## BEGIN AUTO GENERATED SECTION:
+Findings from csv:
+Calculated EOQ: 2374.71 (Optimal Order Cost) for ordering cost: 50 and holding cost: 2
+External findings:
+Total sales: 3263
+Most ordered product: Americano with Milk, amount of sales: 764
+Least ordered product: Espresso, amount of sales: 122

@@ -1,7 +1,35 @@
 import re
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 
+def calculate_eoq(df, ordering_cost, holding_cost, time_period='daily'):
+    """
+    Calculate Economic Order Quantity (EOQ) based on sales data.
+
+    :param df: Pandas DataFrame containing sales transactions.
+    :param ordering_cost: Cost per order.
+    :param holding_cost: Holding cost per unit per year.
+    :param time_period: 'daily', 'monthly', or 'yearly' sales data.
+    :return: EOQ value.
+    """
+
+    # Convert timestamp to date to count unique daily sales occurrences
+    df['date'] = pd.to_datetime(df['timestamp']).dt.date
+    daily_sales = df.groupby('date').size()
+
+    # Aggregate demand based on time period
+    if time_period == 'daily':
+        annual_demand = daily_sales.mean() * 365
+    elif time_period == 'monthly':
+        annual_demand = daily_sales.mean() * 12 * 30  # Approximate monthly sales
+    else:  # Assume yearly by default
+        annual_demand = daily_sales.sum()
+
+    # Compute EOQ
+    eoq = np.sqrt((2 * annual_demand * ordering_cost) / holding_cost)
+    return float(eoq)
 
 def pad_and_fill_missing_values(row, target_length=7, fill_value="0.00"):
     filled_row = [col if col.strip() != "" else fill_value for col in row]
@@ -49,6 +77,30 @@ def convert_to_iso8601(date_str: str):
     except Exception:
         return pd.to_datetime("1970-01-01").strftime("%Y-%m-%d")
 
+
+def calculate_eoq(df, demand_col, ordering_cost, holding_cost, time_period='daily'):
+    """
+    Calculate Economic Order Quantity (EOQ) based on sales data.
+
+    :param df: Pandas DataFrame containing sales data over time.
+    :param demand_col: Column name representing sales demand.
+    :param ordering_cost: Cost per order.
+    :param holding_cost: Holding cost per unit per year.
+    :param time_period: 'daily', 'monthly', or 'yearly' sales data.
+    :return: EOQ value.
+    """
+
+    # Aggregate demand based on time period
+    if time_period == 'daily':
+        annual_demand = df[demand_col].sum() * 365
+    elif time_period == 'monthly':
+        annual_demand = df[demand_col].sum() * 12
+    else:  # Assume yearly by default
+        annual_demand = df[demand_col].sum()
+
+    # Compute EOQ
+    eoq = np.sqrt((2 * annual_demand * ordering_cost) / holding_cost)
+    return eoq
 
 def sanitize_text(text):
         if pd.isna(text):
